@@ -129,36 +129,36 @@ To request your Integration ID simply send the building xls files and the userna
         
     - Then at the bottom of the script section, paste the code below BEFORE the last function in the section (before `_handleBackButtonTap` in workplaces services file)
     
-    ```
-    _setupWA: function() {
-        window.loadWatsonAssistantChat({
-            integrationID: "PASTE_INTEGRATION_ID_HERE",
-            region: "us-south"
-        }).then((instance) => {
-            function setContext(event) {
-                event.data.context = event.data.context || {};
-                event.data.context.skills = event.data.context.skills || {};
-                event.data.context.skills['main skill'] = event.data.context.skills['main_skill'] || {};
-                event.data.context.skills['main skill'].user_defined = event.data.context.skills['main skill'].user_defined || {};
-                event.data.context.skills['main skill'].user_defined.userContext = event.data.context.skills['main skill'].user_defined.userContext || {};
-                event.data.context.skills['main skill'].user_defined.userContext.location = event.data.context.skills['main skill'].user_defined.userContext.location || {};
-                event.data.context.skills['main skill'].user_defined.userContext.location.building = event.data.context.skills['main skill'].user_defined.userContext.location.building || {};
-                event.data.context.skills['main skill'].user_defined.userContext.name = event.data.context.skills['main skill'].user_defined.userContext.name || {};
-                
-                if (this.primaryLocation.building) { // workplace services and reservation use building
-                    event.data.context.skills['main skill'].user_defined.userContext.location.building = this.primaryLocation.building.value;
-                } else if (this.primaryLocation.parentBuilding) { // service request uses parentBuilding 
-                    event.data.context.skills['main skill'].user_defined.userContext.location.building = this.primaryLocation.parentBuilding.value;
+        ```
+        _setupWA: function() {
+            window.loadWatsonAssistantChat({
+                integrationID: "PASTE_INTEGRATION_ID_HERE",
+                region: "us-south"
+            }).then((instance) => {
+                function setContext(event) {
+                    event.data.context = event.data.context || {};
+                    event.data.context.skills = event.data.context.skills || {};
+                    event.data.context.skills['main skill'] = event.data.context.skills['main_skill'] || {};
+                    event.data.context.skills['main skill'].user_defined = event.data.context.skills['main skill'].user_defined || {};
+                    event.data.context.skills['main skill'].user_defined.userContext = event.data.context.skills['main skill'].user_defined.userContext || {};
+                    event.data.context.skills['main skill'].user_defined.userContext.location = event.data.context.skills['main skill'].user_defined.userContext.location || {};
+                    event.data.context.skills['main skill'].user_defined.userContext.location.building = event.data.context.skills['main skill'].user_defined.userContext.location.building || {};
+                    event.data.context.skills['main skill'].user_defined.userContext.name = event.data.context.skills['main skill'].user_defined.userContext.name || {};
+                    
+                    if (this.primaryLocation.building) { // workplace services and reservation use building
+                        event.data.context.skills['main skill'].user_defined.userContext.location.building = this.primaryLocation.building.value;
+                    } else if (this.primaryLocation.parentBuilding) { // service request uses parentBuilding 
+                        event.data.context.skills['main skill'].user_defined.userContext.location.building = this.primaryLocation.parentBuilding.value;
+                    }
+                    
+                    event.data.context.skills['main skill'].user_defined.userContext.name.first = this.currentUser.firstName;
+                    event.data.context.skills['main skill'].user_defined.userContext.name.last = this.currentUser.lastName
                 }
-                
-                event.data.context.skills['main skill'].user_defined.userContext.name.first = this.currentUser.firstName;
-                event.data.context.skills['main skill'].user_defined.userContext.name.last = this.currentUser.lastName
-            }
-            instance.on({type: "pre:send", handler: setContext.bind(this)});
-            instance.render();
-        });
-    },
-    ```
+                instance.on({type: "pre:send", handler: setContext.bind(this)});
+                instance.render();
+            });
+        },
+        ```
     - Upload the changes by clicking on the Upload view file icon.
     - Click Save & Close button in upper right corner.
     - From the Web View Designer, repeat the same steps for: 
