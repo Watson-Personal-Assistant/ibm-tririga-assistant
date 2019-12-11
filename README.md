@@ -107,7 +107,7 @@ To request your Integration ID simply send the building xls files and the userna
 2.	Validate and Import the OM package.
 3.	If you can reserve rooms using the Workplace Services apps, then go to next step, otherwise you will need to define buildings, spaces, reservation space groups, reservation coordinators and other things following [this documentation](https://www.ibm.com/support/knowledgecenter/en/SSFCZ3_10.5.2/com.ibm.tri.doc/res_overview/t_ctr_manage_reservations.html) ([https://www.ibm.com/support/knowledgecenter/en/SSFCZ3_10.5.2/com.ibm.tri.doc/res_overview/t_ctr_manage_reservations.html](https://www.ibm.com/support/knowledgecenter/en/SSFCZ3_10.5.2/com.ibm.tri.doc/res_overview/t_ctr_manage_reservations.html))
 
-4.	You can test the OSLC calls using the POSTMAN collection provided in the postman directory.  Just change the payload to have location/building/space you have defined in your TRIRIGA instance.
+4.	Test the OSLC calls using the POSTMAN collection provided in the postman directory.  You will need to change the payload to have 'location/building/space' you have defined in your TRIRIGA instance. A successful test of the OSLC APIs when there are no OSLC errors, and when the responses from the POSTMAN test take 4-7 seconds or less.
 
 
 #### F) EDIT THE WORKPLACE SERVICES APPS TO ADD CHAT UI ACCESS
