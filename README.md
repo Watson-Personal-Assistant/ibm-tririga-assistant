@@ -134,34 +134,28 @@ To request your Integration ID simply send the building xls files and the userna
         window.loadWatsonAssistantChat({
             integrationID: "PASTE_INTEGRATION_ID_HERE",
             region: "us-south"
-            }).then((instance) => {
-                function setContext(event) {
-                    event.data.context =
-                    event.data.context || {};
-                    event.data.context.skills =
-                    event.data.context.skills || {};
-                    event.data.context.skills['main skill'] =
-                    event.data.context.skills['main_skill'] || {};
-                    event.data.context.skills['main skill'].user_defined =
-                    event.data.context.skills['main skill'].user_defined || {};
-                    event.data.context.skills['main skill'].user_defined.userContext =
-                    event.data.context.skills['main skill'].user_defined.userContext || {};
-                    event.data.context.skills['main skill'].user_defined.userContext.location =
-                    event.data.context.skills['main skill'].user_defined.userContext.location || {};
-                    event.data.context.skills['main skill'].user_defined.userContext.location.building =
-                    event.data.context.skills['main skill'].user_defined.userContext.location.building || {};
-                    event.data.context.skills['main skill'].user_defined.userContext.name =
-                    event.data.context.skills['main skill'].user_defined.userContext.name || {};
-                    if (this.primaryLocation.building) { // workplace services and reservation use building
-                        event.data.context.skills['main skill'].user_defined.userContext.location.building = this.primaryLocation.building.value;
-                    } else if (this.primaryLocation.parentBuilding) { // service request uses parentBuilding 
-                        event.data.context.skills['main skill'].user_defined.userContext.location.building = this.primaryLocation.parentBuilding.value;
-                    }
-                    event.data.context.skills['main skill'].user_defined.userContext.name.first = this.currentUser.firstName;
-                    event.data.context.skills['main skill'].user_defined.userContext.name.last = this.currentUser.lastName
+        }).then((instance) => {
+            function setContext(event) {
+                event.data.context = event.data.context || {};
+                event.data.context.skills = event.data.context.skills || {};
+                event.data.context.skills['main skill'] = event.data.context.skills['main_skill'] || {};
+                event.data.context.skills['main skill'].user_defined = event.data.context.skills['main skill'].user_defined || {};
+                event.data.context.skills['main skill'].user_defined.userContext = event.data.context.skills['main skill'].user_defined.userContext || {};
+                event.data.context.skills['main skill'].user_defined.userContext.location = event.data.context.skills['main skill'].user_defined.userContext.location || {};
+                event.data.context.skills['main skill'].user_defined.userContext.location.building = event.data.context.skills['main skill'].user_defined.userContext.location.building || {};
+                event.data.context.skills['main skill'].user_defined.userContext.name = event.data.context.skills['main skill'].user_defined.userContext.name || {};
+                
+                if (this.primaryLocation.building) { // workplace services and reservation use building
+                    event.data.context.skills['main skill'].user_defined.userContext.location.building = this.primaryLocation.building.value;
+                } else if (this.primaryLocation.parentBuilding) { // service request uses parentBuilding 
+                    event.data.context.skills['main skill'].user_defined.userContext.location.building = this.primaryLocation.parentBuilding.value;
                 }
-                instance.on({type: "pre:send", handler: setContext.bind(this)});
-                instance.render();
+                
+                event.data.context.skills['main skill'].user_defined.userContext.name.first = this.currentUser.firstName;
+                event.data.context.skills['main skill'].user_defined.userContext.name.last = this.currentUser.lastName
+            }
+            instance.on({type: "pre:send", handler: setContext.bind(this)});
+            instance.render();
         });
     },
     ```
