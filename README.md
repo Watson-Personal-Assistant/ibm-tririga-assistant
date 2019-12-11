@@ -64,7 +64,7 @@ You will need to also run a TRIRIGA Report to gather the time zones for each bui
 4.	Click Save 
 5.	Click Run Report 
 6.	Click Export from the report window that appears 
-7.	Send `jtmoore@us.ibm.com` the `.xlsx` file generated from the report for the creation of your assistant.
+7.	Email **[jtmoore@us.ibm.com](jtmoore@us.ibm.com)** the `.xlsx` file generated from the report for the creation of your assistant.
 
 #### C) SET UP THE ASSISTANT USER.
 
@@ -83,7 +83,7 @@ In order to allow the assistant user to create location reservations and service
     
 2.	Make note of the user name and password because it will need to be entered into the ai assistant.
 3.	Important: Do NOT give the assistant user a primary location.  This user will be used to book rooms and submit service requests on behalf of all users in the TRIRIGA instance.
-4.	If assistant will be used to make room reservations, the `TRIRIGAWEB.properties` should have the `SHOW_PREFERENCES_LINK` env var set to Y 
+4.	If assistant will be used to make room reservations, the `TRIRIGAWEB.properties` should have the `SHOW_PREFERENCES_LINK` env var set to `Y` 
     
     - (note you will need to restart your WebSphere server if you have to change this value).
 
@@ -113,7 +113,7 @@ To request your Integration ID simply send the building xls files and the userna
 #### F) EDIT THE WORKPLACE SERVICES APPS TO ADD CHAT UI ACCESS
 
 1.	Open the Workplace Service view by going to Tools > Web View Designer > triWorkplaceServices.
-2.	Copy the value in "Development Filename" and paste it as the value in the "Production Filename".
+2.	Copy the value in `Development Filename` and paste it as the value in the "Production Filename".
 3.	In the View Files section, click on /triview-workplace-services-dev.html
 4.	Click on the Download View File icon.
 5.	Edit the `triview-workplace-services-dev.html` file as follows:
@@ -163,10 +163,10 @@ To request your Integration ID simply send the building xls files and the userna
         },
         ```
     - Upload the changes by clicking on the Upload view file icon.
-    - Click Save & Close button in upper right corner.
+    - Click `Save & Close` button in upper right corner.
     - From the Web View Designer, repeat the same steps for: 
-    - triRoomReservation view (file triview-room-reservation-dev.html) and 
-    - triServiceRequest (file triview-service-request-dev.html) .
+        - triRoomReservation view (file `triview-room-reservation-dev.html`)
+        - triServiceRequest (file `triview-service-request-dev.html`).
 
 ## Summary
 
