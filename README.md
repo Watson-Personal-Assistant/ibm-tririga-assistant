@@ -1,8 +1,11 @@
-# IBM-Tririga-Assistant
+# ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) WARNING: THIS SOLUTION IS NOT YET RELEASED OR SUPPORTED, DO NOT INSTALL UNLESS DIRECTLY INSTRUCTED BY AN IBM PARTY
+
+
+# IBM Tririga Assistant
 
 An assistant for IBM Tririga Workplace Services applications that enables users to book rooms, make service requests, locate people/places and ask questions with an AI assistant. 
 
-# ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) WARNING: THIS SOLUTION IS NOT YET RELEASED OR SUPPORTED, DO NOT INSTALL UNLESS DIRECTLY INSTRUCTED BY AN IBM PARTY
+![image](images/assistant-1.png)
 
 ---
 
