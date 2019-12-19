@@ -9,7 +9,7 @@ An assistant for IBM Tririga Workplace Services applications that enables users 
 
 ---
 
-# Installation Tutorial
+# Installation and Configuration
 
 ```diff
 - WARNING: THIS SOLUTION IS NOT YET RELEASED OR SUPPORTED, DO NOT INSTALL UNLESS DIRECTLY INSTRUCTED BY AN IBM PARTY
@@ -17,17 +17,25 @@ An assistant for IBM Tririga Workplace Services applications that enables users 
 
 ## Introduction
 
-State the purpose of your tutorial, your intended audience, and the benefits readers can gain from it. Aim to grab the reader’s interest quickly, using terms they are likely to search on and relate to.
+TRIRIGA Assistant is an AI chatbot powered by the IBM Watson Assistant Service. It offers a brand new experience for employees to engage with their workplace services. It allows employees to make room reservations, report issues or lookup people using natural language. The 
+
+This is the free basic version of the assistant that is only accessible within TRIRIGA Workplace Experience Apps. The premium version has not yet been released, but it will allow more customizations, additional capabilities and it will open up the platform for creating your own custom skills.
+
+These instructions will guide you through 1)  provisioning a TRIRIGA Assistant skill on the IBM Cloud, 2) installing and testing the OSLC APIs and 3) installing the chatbot interface into your workplace services apps. It is highly advisable that these steps are performed by a developer that is trained and experienced with IBM TRIRIGA.
 
 ## Prerequisites
 
-List or describe any skills, tools, experience, or specific conditions required to perform the tutorial. Include version levels for any required tools or platforms. Include links to necessary resources whenever possible.
+- TRIRIGA Workplace Services apps 
+- TRIRIGA Request Central and TRIRIGA Reserve deployed
+- TRIRIGA instance that is accessible securely from the internet. TRIRIGA Assistnat is a SaaS service hosted securely on IBM cloud. The service will need to communicate via secured OSLC APIs to your TRIRIGA instance. This is usually not an issue for TRIRIGA SaaS customers.
 
 ## Estimated time
 
-Provide guidance on how long it will reasonably take to complete the steps under normal circumstances.
+This installation should take 5-8 hours to complete, not including the time for IBM to provision the TRIRIGA Assistant skill.
 
 ## Steps
+
+### Part 1 - Configure TRIRIGA and Provision your TRIRIGA Assistant Skill
 
 #### A) GATHER YOUR BUILDING AND ROOM NAMES.
 
@@ -78,8 +86,12 @@ In order to allow the assistant user to create location reservations and service
     - TRIRIGA Request Central - Reserve - Fundamentals
     - WAS Reserve OSLC
     
-    Licenses:
-    - IBM Facilities and Real Estate Management on Cloud Self Service
+    
+    License:
+    - IBM Facilities and Real Estate Management on Cloud Self Service, or
+    - IBM TRIRIGA Request Central, or
+    - IBM TRIRIGA Workplace Reservation Manager
+    
     
 2.	Make note of the user name and password because it will need to be entered into the ai assistant.
 3.	Important: Do NOT give the assistant user a primary location.  This user will be used to book rooms and submit service requests on behalf of all users in the TRIRIGA instance.
@@ -100,6 +112,7 @@ Your integration ID will be used to connect your TRIRIGA with the Assistant Skil
 
 To request your Integration ID simply send the building xls files and the username/password of the assistant account.
 
+### Part 2 - Install and Test the OSLC APIs into TRIRIGA
 
 #### E) LOAD THE OSLC RESOURCES
 
@@ -109,6 +122,7 @@ To request your Integration ID simply send the building xls files and the userna
 
 4.	Test the OSLC calls using the POSTMAN collection provided in the postman directory.  You will need to change the payload to have 'location/building/space' you have defined in your TRIRIGA instance. A successful test of the OSLC APIs when there are no OSLC errors, and when the responses from the POSTMAN test take 4-7 seconds or less.
 
+### Part 3 - Install Install the Chatbot UI and configure it for your assistant
 
 #### F) EDIT THE WORKPLACE SERVICES APPS TO ADD CHAT UI ACCESS
 
