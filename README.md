@@ -2,7 +2,7 @@
 
 An assistant for IBM Tririga Workplace Services applications that enables users to book rooms, make service requests, locate people/places and ask questions with an AI assistant. 
 
-![image](images/assistant-1.png | width=100)
+![image](images/assistant-1.png)
 
 ---
 
