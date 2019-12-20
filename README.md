@@ -1,23 +1,14 @@
-# ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) WARNING: THIS SOLUTION IS NOT YET RELEASED OR SUPPORTED, DO NOT INSTALL UNLESS DIRECTLY INSTRUCTED BY AN IBM PARTY
-
-
 # IBM Tririga Assistant
 
 An assistant for IBM Tririga Workplace Services applications that enables users to book rooms, make service requests, locate people/places and ask questions with an AI assistant. 
 
-![image](images/assistant-1.png)
+![image](images/assistant-1.png | width=100)
 
 ---
 
-# Installation and Configuration
-
-```diff
-- WARNING: THIS SOLUTION IS NOT YET RELEASED OR SUPPORTED, DO NOT INSTALL UNLESS DIRECTLY INSTRUCTED BY AN IBM PARTY
-```
-
 ## Introduction
 
-TRIRIGA Assistant is an AI chatbot powered by the IBM Watson Assistant Service. It offers a brand new experience for employees to engage with their workplace services. It allows employees to make room reservations, report issues or lookup people using natural language. The 
+TRIRIGA Assistant is an AI chatbot powered by the IBM Watson Assistant Service. It offers a brand new experience for employees to engage with their workplace services. It allows employees to make room reservations, report issues or lookup people using natural language.  
 
 This is the free basic version of the assistant that is only accessible within TRIRIGA Workplace Experience Apps. The premium version has not yet been released, but it will allow more customizations, additional capabilities and it will open up the platform for creating your own custom skills.
 
