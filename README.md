@@ -16,8 +16,9 @@ These instructions will guide you through 1)  provisioning a TRIRIGA Assistant s
 
 ## Prerequisites
 
-- TRIRIGA Workplace Services apps 
-- TRIRIGA Request Central and TRIRIGA Reserve deployed
+- TRIRIGA 10.6.1/3.6.1 
+- TRIRIGA Workplace Services apps delpoyed
+- TRIRIGA Request Central and (optionally) TRIRIGA Reserve 
 - TRIRIGA instance that is accessible securely from the internet. TRIRIGA Assistnat is a SaaS service hosted securely on IBM cloud. The service will need to communicate via secured OSLC APIs to your TRIRIGA instance. This is usually not an issue for TRIRIGA SaaS customers.
 
 ## Estimated time
