@@ -33,8 +33,8 @@ This installation should take 5-8 hours to complete, not including the time for 
 
 You will need to run a few TRIRIGA Reports to gather a list of buildings, floors, and reservable spaces. These are the reports to run:
 
-- All Buildings with Reservable Spaces: triBuilding - Find - All Buildings with Reservable Spaces 
-- Reservable Space: triSpace - Reservable Space
+- All Buildings with Reservable Spaces: `triBuilding -  Find - All Buildings with Reservable Spaces` 
+- Reservable Spaces: `triSpace - Reservable Space`
     
 
 
@@ -64,7 +64,6 @@ You will need to also run a TRIRIGA Report to gather the time zones for each bui
 4.	Click Save 
 5.	Click Run Report 
 6.	Click Export from the report window that appears 
-7.	Email **[jtmoore@us.ibm.com](jtmoore@us.ibm.com)** the `.xlsx` file generated from the report for the creation of your assistant.
 
 #### C) SET UP THE ASSISTANT USER.
 
@@ -100,9 +99,10 @@ In order to allow the assistant user to create location reservations and service
 
 
 #### D) REQUEST YOUR ASSISTANT INTEGRATION ID
-Your integration ID will be used to connect your TRIRIGA with the Assistant Skill on the cloud. You will use this Integration ID in the last step. 
+Your integration ID will be used to connect your TRIRIGA with the Assistant Skill on the cloud. You will use this Integration ID in the last step.
 
-To request your Integration ID simply send the building xls files and the username/password of the assistant account.
+To request your Integration ID simply send the building xls files and the username/password of the assistant account to 
+**[jtmoore@us.ibm.com](jtmoore@us.ibm.com)** the `.xls` files generated from the reports for the creation of your assistant.
 
 ### Part 2 - Install and Test the OSLC APIs into TRIRIGA
 
@@ -114,7 +114,7 @@ To request your Integration ID simply send the building xls files and the userna
 
 4.	Test the OSLC calls using the POSTMAN collection provided in the postman directory.  You will need to change the payload to have 'location/building/space' you have defined in your TRIRIGA instance. A successful test of the OSLC APIs when there are no OSLC errors, and when the responses from the POSTMAN test take 4-7 seconds or less.
 
-### Part 3 - Install Install the Chatbot UI and configure it for your assistant
+### Part 3 - Install the Chatbot UI and configure it for your assistant
 
 #### F) EDIT THE WORKPLACE SERVICES APPS TO ADD CHAT UI ACCESS
 
