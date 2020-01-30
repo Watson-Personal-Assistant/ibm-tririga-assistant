@@ -540,63 +540,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "tririga - test WatsonConnector Class Loader",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Cache-Control",
-						"value": "no-cache",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\":\"book a room\",\n\t\"session_id\":\"\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{URL}}/html/en/default/rest/WatsonConnector",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"html",
-						"en",
-						"default",
-						"rest",
-						"WatsonConnector"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
