@@ -88,11 +88,6 @@
 						"key": "Content-Type",
 						"type": "text",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"type": "text",
-						"value": "JSESSIONID=0000c5o8DOaW_iJspuQ6xsZ9bKg:-1"
 					}
 				],
 				"url": {
@@ -147,17 +142,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"dcterms:title\": \"Worktask - Troy Corrective Maintenance\",\n\"spi:triTaskTypeCL\": \"Corrective\",\n\"dcterms:description\": \"Automated Creation\",\n\"spi:triWorkingLocationTX\": \"\\\\Locations\\\\Offices\\\\Europe\\\\Frankfurt Watson Centre\\\\00 - Ground Floor\\\\00-AO02\",\n\"spi_wm:wopriority\": \"High\",\n\"spi:triCurrencyUO\": \"Euro\",\n\"spi:action\": \"Activate\"\n}"
+					"raw": "{ \"dcterms:title\": \"Worktask - Corrective Maintenance\",\n\"spi:triTaskTypeCL\": \"Corrective\",\n\"dcterms:description\": \"Automated Creation\",\n\"spi:triWorkingLocationTX\": \"\\\\Locations\\\\Offices\\\\Europe\\\\Frankfurt Watson Centre\\\\00 - Ground Floor\\\\00-AO02\",\n\"spi_wm:wopriority\": \"High\",\n\"spi:triCurrencyUO\": \"Euro\",\n\"spi:action\": \"Activate\"\n}"
 				},
 				"url": {
-					"raw": "{{URL}}/oslc/so/triWorkTaskCF",
+					"raw": "{{URL}}/oslc/so/ibmWorkTaskCF",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"oslc",
 						"so",
-						"triWorkTaskCF"
+						"ibmWorkTaskCF"
 					]
 				}
 			},
@@ -205,14 +200,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{URL}}/oslc/so/triServiceRequestCF",
+					"raw": "{{URL}}/oslc/so/ibmServiceRequestCF",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"oslc",
 						"so",
-						"triServiceRequestCF"
+						"ibmServiceRequestCF"
 					]
 				}
 			},
@@ -255,14 +250,14 @@
 					"raw": "{\n    \"spi:triBuildingTX\": \"901\",\n    \"spi:triSpaceTX\": \"5A-003\",\n    \"spi:triSubjectTX\": \"my meeting\",\n    \"spi:triStartDT\": \"2019-09-20T16:00:00-0600\",\n    \"spi:triEndDT\": \"2019-09-20T17:00:00-0600\",\n    \"spi:action\": \"Create\"\n}"
 				},
 				"url": {
-					"raw": "{{URL}}/oslc/so/triReservationServiceCF",
+					"raw": "{{URL}}/oslc/so/ibmReservationServiceCF",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"oslc",
 						"so",
-						"triReservationServiceCF"
+						"ibmReservationServiceCF"
 					]
 				}
 			},
@@ -305,14 +300,14 @@
 					"raw": "{\n    \"spi:triBuildingTX\": \"901\",\n    \"spi:triSpaceTX\": \"5A-003\",\n    \"spi:triStartDT\": \"2019-09-20T16:00:00-0600\",\n    \"spi:triEndDT\": \"2019-09-20T17:00:00-0600\",\n    \"spi:action\": \"Delete Reservation\"\n}"
 				},
 				"url": {
-					"raw": "{{URL}}/oslc/so/triReservationServiceCF",
+					"raw": "{{URL}}/oslc/so/ibmReservationServiceCF",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"oslc",
 						"so",
-						"triReservationServiceCF"
+						"ibmReservationServiceCF"
 					]
 				}
 			},
@@ -355,68 +350,21 @@
 					"raw": "{\n    \"spi:action\": \"Search Meeting Spaces\",\n    \"spi:triBuildingTX\": \"901\",\n    \"spi:triStartDT\": \"2019-09-19T17:00:00.000-05:00\",\n    \"spi:triEndDT\": \"2019-09-19T18:00:00.000-05:00\",\n    \"spi:triSubjectTX\": \"my meeting\"\n}"
 				},
 				"url": {
-					"raw": "{{URL}}/oslc/so/triReservationServiceCF",
+					"raw": "{{URL}}/oslc/so/ibmReservationServiceCF",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"oslc",
 						"so",
-						"triReservationServiceCF"
+						"ibmReservationServiceCF"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "tririga - locate person (REST)",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"page\": {\n        \"from\": 0,\n        \"size\": 50\n    },\n    \"filters\": [\n        {\n            \"name\": \"name\",\n            \"operator\": \"contains\",\n            \"value\": \"troy dugger\",\n            \"ignoreIfBlank\": false,\n            \"type\": \"\"\n        }\n    ],\n    \"sorts\": [\n        {\n            \"name\": \"name\",\n            \"desc\": false,\n            \"type\": \"\"\n        }\n    ],\n    \"calendar\": null\n}"
-				},
-				"url": {
-					"raw": "{{URL}}/p/webapi/rest/v2/triAppPeopleSearch/-1/peopleLookup?countOnly=false&query=true",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"p",
-						"webapi",
-						"rest",
-						"v2",
-						"triAppPeopleSearch",
-						"-1",
-						"peopleLookup"
-					],
-					"query": [
-						{
-							"key": "countOnly",
-							"value": "false"
-						},
-						{
-							"key": "query",
-							"value": "true"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "tririga - locate space (OSLC)",
+			"name": "tririga - locate space",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -455,14 +403,14 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{URL}}/oslc/spq/triWALocateSpaceQC?oslc.select=*&oslc.where=spi:triParentBuildingTX=\"%25901%25\" and spi:triNameTX=\"%255A-003%25\"",
+					"raw": "{{URL}}/oslc/spq/ibmWALocateSpaceQC?oslc.select=*&oslc.where=spi:triParentBuildingTX=\"%25901%25\" and spi:triNameTX=\"%255A-003%25\"",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"oslc",
 						"spq",
-						"triWALocateSpaceQC"
+						"ibmWALocateSpaceQC"
 					],
 					"query": [
 						{
@@ -479,7 +427,7 @@
 			"response": []
 		},
 		{
-			"name": "tririga - locate person (OSLC)",
+			"name": "tririga - locate person",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -518,14 +466,14 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{URL}}/oslc/spq/triWALocatePersonQC?oslc.select=*&oslc.where=spi:triNameTX=\"%25troy%25\"",
+					"raw": "{{URL}}/oslc/spq/ibmWALocatePersonQC?oslc.select=*&oslc.where=spi:triNameTX=\"%25troy%25\"",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"oslc",
 						"spq",
-						"triWALocatePersonQC"
+						"ibmWALocatePersonQC"
 					],
 					"query": [
 						{
@@ -536,63 +484,6 @@
 							"key": "oslc.where",
 							"value": "spi:triNameTX=\"%25troy%25\""
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "tririga - test WatsonConnector Class Loader",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Cache-Control",
-						"value": "no-cache",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\":\"book a room\",\n\t\"session_id\":\"\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{URL}}/html/en/default/rest/WatsonConnector",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"html",
-						"en",
-						"default",
-						"rest",
-						"WatsonConnector"
 					]
 				}
 			},
