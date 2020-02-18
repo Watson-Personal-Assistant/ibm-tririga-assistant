@@ -106,8 +106,13 @@ Test the OSLC calls using the POSTMAN collection provided in the postman directo
 
 Your integration ID will be used to connect your TRIRIGA with the Assistant Skill on the cloud. You will use this Integration ID in the next step.
 
-To request your Integration ID simply send the building xls files and the username/password of the assistant account to 
-**[jtmoore@us.ibm.com](jtmoore@us.ibm.com)** the `.xls` files generated from the reports for the creation of your assistant.
+To request your Integration ID, send the following to **[jtmoore@us.ibm.com](jtmoore@us.ibm.com)**:
+1. The Excel files generated from the three reports:
+- Reservable Spaces (Step A).
+- All Active Locations (Step A).
+- Location Timezones (Step B).
+2. The URL for your TRIRIGA instance. Note: The instance must be accessible without a VPN and through HTTPS. 
+3. The username and password for the assistant account (Step D).
 
 
 ### Part 4 - Add Assistant UI to Workplace Services apps
