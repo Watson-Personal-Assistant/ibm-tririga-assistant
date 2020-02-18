@@ -95,9 +95,9 @@ In order to allow the assistant user to create location reservations and service
 2.	Make note of the user name and password because it will need to be provided to IBM.
 3.	Important: Do NOT give the assistant user a primary location.  This user will be used to book rooms and submit service requests on behalf of all users in the TRIRIGA instance.
 
-#### E) TEST THE OSLC ENDPOINTS
+#### E) (OPTIONAL) TEST THE OSLC ENDPOINTS
 
-This step is optional.  If you understand Postman, then you can test the OSLC calls using the Postman collection provided in the postman directory.  You will need to change the payload to have 'location/building/space' you have defined in your TRIRIGA instance. A successful test of the OSLC APIs when there are no OSLC errors.
+If you understand Postman, then you can test the OSLC calls using the Postman collection provided in the postman directory.  You will need to change the payload to have 'location/building/space' you have defined in your TRIRIGA instance. A successful test of the OSLC APIs when there are no OSLC errors.
     
 
 ### Part 3 - Request the Assistant Integration ID
