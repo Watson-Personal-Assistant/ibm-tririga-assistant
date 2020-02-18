@@ -97,12 +97,12 @@ In order to allow the assistant user to create location reservations and service
 
 #### E) TEST THE OSLC ENDPOINTS
 
-Test the OSLC calls using the POSTMAN collection provided in the postman directory.  You will need to change the payload to have 'location/building/space' you have defined in your TRIRIGA instance. A successful test of the OSLC APIs when there are no OSLC errors.
+This step is optional.  If you understand Postman, then you can test the OSLC calls using the Postman collection provided in the postman directory.  You will need to change the payload to have 'location/building/space' you have defined in your TRIRIGA instance. A successful test of the OSLC APIs when there are no OSLC errors.
     
 
 ### Part 3 - Request the Assistant Integration ID
 
-#### D) REQUEST YOUR ASSISTANT INTEGRATION ID
+#### F) REQUEST YOUR ASSISTANT INTEGRATION ID
 
 Your integration ID will be used to connect your TRIRIGA with the Assistant Skill on the cloud. You will use this Integration ID in the next step.
 
@@ -117,7 +117,7 @@ To request your Integration ID, send the following to **[jtmoore@us.ibm.com](jtm
 
 ### Part 4 - Add Assistant UI to Workplace Services apps
 
-#### F) EDIT THE WORKPLACE SERVICES APP TO ADD CHAT UI ACCESS
+#### G) EDIT THE WORKPLACE SERVICES APP TO ADD CHAT UI ACCESS
 
 1.	Once you have received your Integration ID, open the Workplace Service view by going to Tools > Web View Designer > triWorkplaceServices.
 2.	Copy the value in `Development Filename` and paste it as the value in the "Production Filename". (Note: This is done for testing purposes and can be reversed after testing passes. A link to instructions have been add below.)
@@ -143,23 +143,23 @@ To request your Integration ID, send the following to **[jtmoore@us.ibm.com](jtm
 11. Upload the changes by clicking on the Upload view file icon.
 12. Click `Save & Close` button in upper right corner.
 
-#### G) EDIT THE ROOM RESERVATION AND SERVICE REQUEST VIEWS
+#### H) EDIT THE ROOM RESERVATION AND SERVICE REQUEST VIEWS
 
 From the Web View Designer, repeat the same steps directly above for the other views: 
     - triRoomReservation View (edit files `trilazy-imports.html` and `triview-room-reservation-dev.html`).
     - triServiceRequest View (edit files `trilazy-imports.html` and `triview-service-request-dev.html`).
 
-#### H) TEST THE WORKPLACE SERVICES APPS
+#### I) TEST THE WORKPLACE SERVICES APPS
 
 If all edits were done correctly, you should see a chat icon appear at the bottom right of the Workplace Services apps.  Log into the Workplace Services apps as a user that isn't the system or assistant user and test the assistant.
 
-#### I) (OPTIONAL) VULCANIZE THE VIEWS
+#### J) (OPTIONAL) VULCANIZE THE VIEWS
 
 If you feel that your workplace service apps are loading much slower after the edits, then you can "vulcanize" the apps [following these instructions](https://www.ibm.com/developerworks/community/wikis/home?lang=en#!/wiki/IBM TRIRIGA1/page/How to vulcanize your UX application).  If you do this, make sure you undo the change like F2 that sets the `Production Filename` to the `Development Filename`.
 
 ### Part 5 - Configure users to use the assistant for reservations
 
-#### J) Allow Assistant user to create reservations on behalf of other users
+#### K) Allow Assistant user to create reservations on behalf of other users
 
 1.	If assistant will be used to make room reservations, the `TRIRIGAWEB.properties` should have the `SHOW_PREFERENCES_LINK` env var set to `Y` 
     
