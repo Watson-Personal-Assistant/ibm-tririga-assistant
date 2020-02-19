@@ -53,6 +53,9 @@ You will need to run a few TRIRIGA Reports to gather a list of buildings, floors
 
 8. You can use the 'Export' action at the top/bottom to export the results to a `.xlsx` file.
 
+9. Repeat steps 4 through 8, but for the `triBuilding -  Find - All Buildings with Reservable Spaces` report by searching for `All Buildings with Reservable Spaces` in the Name column`.  
+**Note**, if you don't find the query, there are two spaces after the first hyphen. Markdown removes the space when rendering this document. Searching for the latter part of the name should find just one query.
+
 #### B) GATHER THE TIMEZONES FOR EACH BUILDING BY DOING THE FOLLOWING: 
 
 You will need to also run a TRIRIGA Report to gather the time zones for each building.
