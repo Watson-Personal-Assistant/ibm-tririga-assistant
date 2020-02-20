@@ -160,7 +160,7 @@ If all edits were done correctly, you should see a chat icon appear at the botto
 
 If you feel that your workplace service apps are loading much slower after the edits, then you can "vulcanize" the apps [following these instructions](https://www.ibm.com/developerworks/community/wikis/home?lang=en#!/wiki/IBM TRIRIGA1/page/How to vulcanize your UX application).  If you do this, make sure you undo the change like F2 that sets the `Production Filename` to the `Development Filename`.
 
-### Part 5 - Configure users to use the assistant for reservations
+### Part 5 - Configure permissions for users 
 
 #### K) ALLOW ASSISTANT USER TO CREATE RESERVATIONS ON BEHALF OF OTHER USERS.
 
@@ -174,5 +174,16 @@ If you feel that your workplace service apps are loading much slower after the e
     - Click the Reservation Delegates tab
     - In the Reservation Delegates section, click the Find button
     - Click the checkbox for the `triassistant` user and click OK
+
+#### L) MODIFY OR CREATE NEW SECURITY GROUP
+
+The OM package imported contains a new model for the UX apps. Non-admin users need to be given proper access to this model.  To accomplish this, you can either create a new security group or modify an existing.  The steps below modify the `TRIRIGA Request Central - Fundamentals` security group to allow users, that have this group, to read, update, create and delete the `ibmTriAssistant` model.
+
+1.  From the TRIRIGA Main UI, go to "Tools > Security Manager".
+2.  Click on the `TRIRIGA Request Central - Fundamentals` security group.
+3.  In the window appears, click on the Access tab.
+4.  Scroll down and expand the `Models` root and select `ibmTriAssistant`.
+5.  In the "Model Access" panel on the right, select `Read,Update,Create and Delete`.
+6.  Click Save & Close.
 
 End of instructions.
