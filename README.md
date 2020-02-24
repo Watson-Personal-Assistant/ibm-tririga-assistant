@@ -152,17 +152,13 @@ From the Web View Designer, repeat the same steps directly above for the other v
     - triRoomReservation View (edit files `trilazy-imports.html` and `triview-room-reservation-dev.html`).
     - triServiceRequest View (edit files `trilazy-imports.html` and `triview-service-request-dev.html`).
 
-#### I) TEST THE WORKPLACE SERVICES APPS.
-
-If all edits were done correctly, you should see a chat icon appear at the bottom right of the Workplace Services apps.  Log into the Workplace Services apps as a user that isn't the system or assistant user and test the assistant.
-
-#### J) (OPTIONAL) VULCANIZE THE VIEWS.
+#### I) (OPTIONAL) VULCANIZE THE VIEWS.
 
 If you feel that your workplace service apps are loading much slower after the edits, then you can "vulcanize" the apps [following these instructions](https://www.ibm.com/developerworks/community/wikis/home?lang=en#!/wiki/IBM TRIRIGA1/page/How to vulcanize your UX application).  If you do this, make sure you undo the change like F2 that sets the `Production Filename` to the `Development Filename`.
 
 ### Part 5 - Configure permissions for users 
 
-#### K) ALLOW ASSISTANT USER TO CREATE RESERVATIONS ON BEHALF OF OTHER USERS.
+#### J) ALLOW ASSISTANT USER TO CREATE RESERVATIONS ON BEHALF OF OTHER USERS.
 
 1.	If assistant will be used to make room reservations, the `TRIRIGAWEB.properties` should have the `SHOW_PREFERENCES_LINK` env var set to `Y` 
     
@@ -175,7 +171,7 @@ If you feel that your workplace service apps are loading much slower after the e
     - In the Reservation Delegates section, click the Find button
     - Click the checkbox for the `triassistant` user and click OK
 
-#### L) MODIFY OR CREATE NEW SECURITY GROUP
+#### K) MODIFY OR CREATE NEW SECURITY GROUP
 
 The OM package imported contains a new model for the UX apps. Non-admin users need to be given proper access to this model.  To accomplish this, you can either create a new security group or modify an existing.  The steps below modify the `TRIRIGA Request Central - Fundamentals` security group to allow users, that have this group, to read, update, create and delete the `ibmTriAssistant` model.
 
@@ -185,5 +181,17 @@ The OM package imported contains a new model for the UX apps. Non-admin users ne
 4.  Scroll down and expand the `Models` root and select `ibmTriAssistant`.
 5.  In the "Model Access" panel on the right, select `Read,Update,Create and Delete`.
 6.  Click Save & Close.
+
+#### L) TEST THE WORKPLACE SERVICES APPS.
+
+It's time to test with the Assistant Chat UI available from the Workplace Services app.  Make sure the user you are using has a primary location set, isn't the system or assistant user, and has the security group modified or created in step K.  If all edits were done correctly, you should see a chat icon appear at the bottom right of the Workplace Services apps.  If you know a room name, then try out the service request functionality by typing "the ________ room has a broken chair" and if you have reserve functionality, try "book a room".
+
+### TROUBLESHOOTING
+
+1.  If a popup appears saying "You do not have permission to access this page", then the user doesn't have a security group that has the permissions documented in step K.
+
+2.  If the chat icon appears but you don't see the introduction similar to what is shown in the image at the very top of this doc, then check that the user you are using has a primary location set in the user's profile.
+
+3.  If the chat icon doesn't appear in the bottom right corner of the Workplace Services app, then check for errors using the Console tab of the Inspector (right click in webpage and choose `Inspect`).
 
 End of instructions.
