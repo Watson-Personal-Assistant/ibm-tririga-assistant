@@ -123,7 +123,7 @@ To request your Integration ID, send the following to **[jtmoore@us.ibm.com](jtm
 #### G) EDIT THE WORKPLACE SERVICES APP TO ADD CHAT UI ACCESS.
 
 1.	Once you have received your Integration ID, open the Workplace Service view by going to Tools > Web View Designer > triWorkplaceServices.
-2.	Copy the value in `Development Filename` and paste it as the value in the "Production Filename". (Note: This is done for testing purposes and can be reversed after testing passes. A link to instructions have been add below.)
+2.	Copy the value in `Development Filename` and paste it as the value in the `Production Filename`. (Note: This is done for testing purposes and can be reversed after testing passes. A link to instructions on how to do "vulcanization" is below.)
 3.	In the View Files section, click on `/trilazy-imports.html`.
 4.	Click on the Download View File icon.
 5.  Edit the `trilazy-importshtml` file and add the following below the last `<link>` tag line:
@@ -148,9 +148,9 @@ To request your Integration ID, send the following to **[jtmoore@us.ibm.com](jtm
 
 #### H) EDIT THE ROOM RESERVATION AND SERVICE REQUEST VIEWS.
 
-From the Web View Designer, repeat the same steps directly above for the other views: 
-    - triRoomReservation View (edit files `trilazy-imports.html` and `triview-room-reservation-dev.html`).
-    - triServiceRequest View (edit files `trilazy-imports.html` and `triview-service-request-dev.html`).
+From the "Web View Designer", repeat the same steps directly above for the other views: 
+    - triRoomReservation View (set the `Production Filename`, edit files `trilazy-imports.html` and `triview-room-reservation-dev.html`).
+    - triServiceRequest View (set the `Production Filename`, edit files `trilazy-imports.html` and `triview-service-request-dev.html`).
 
 #### I) (OPTIONAL) VULCANIZE THE VIEWS.
 
