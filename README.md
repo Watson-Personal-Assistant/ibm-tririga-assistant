@@ -194,4 +194,14 @@ It's time to test with the Assistant Chat UI available from the Workplace Servic
 
 3.  If the chat icon doesn't appear in the bottom right corner of the Workplace Services app, then check for errors using the Console tab of the Inspector (right click in webpage and choose `Inspect`).
 
+4.  If you find that the URL provided when you ask to locate a room or person fails to load correctly (due to "undefined" being in the URL), then it is likely this is caused by the properties set on a couple OSLC resources.  Try the following to fix this problem:
+
+    a.  Go to Tools > System Setup > OSLC Resource Manager.
+    b.  Find and select `ibmWALocatePersonRS`.
+    c.  In the OSLC Resource window that appears, click the link `Import All Fields` in the middle right of the screen above the Properties table.
+    d.  Click Save & Close.
+    e.  From the OSLC Resource Manager table, find and select `ibmWALocateSpaceRS`.
+    f.  In the OSLC Resource window that appears, click the link `Import All Fields` in the middle right of the screen above the Properties table.
+    g.  Click Save & Close.
+
 End of instructions.
