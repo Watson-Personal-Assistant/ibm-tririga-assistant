@@ -196,12 +196,14 @@ It's time to test with the Assistant Chat UI available from the Workplace Servic
 
 4.  If you find that the URL provided when you ask to locate a room or person fails to load correctly (due to "undefined" being in the URL), then it is likely this is caused by the properties set on a couple OSLC resources.  Try the following to fix this problem:
 
-    a.  Go to Tools > System Setup > OSLC Resource Manager.
-    b.  Find and select `ibmWALocatePersonRS`.
-    c.  In the OSLC Resource window that appears, click the link `Import All Fields` in the middle right of the screen above the Properties table.
-    d.  Click Save & Close.
-    e.  From the OSLC Resource Manager table, find and select `ibmWALocateSpaceRS`.
-    f.  In the OSLC Resource window that appears, click the link `Import All Fields` in the middle right of the screen above the Properties table.
-    g.  Click Save & Close.
+    <ol type="a">
+    <li>Go to Tools > System Setup > OSLC Resource Manager.</li>
+    <li>Find and select `ibmWALocatePersonRS`.</li>
+    <li>In the OSLC Resource window that appears, click the link `Import All Fields` in the middle right of the screen above the Properties table.</li>
+    <li>Click Save & Close.</li>
+    <li>From the OSLC Resource Manager table, find and select `ibmWALocateSpaceRS`.</li>
+    <li>In the OSLC Resource window that appears, click the link `Import All Fields` in the middle right of the screen above the Properties table.</li>
+    <li>Click Save & Close.</li>
+    </ol>
 
 End of instructions.
