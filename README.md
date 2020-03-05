@@ -206,4 +206,6 @@ It's time to test with the Assistant Chat UI available from the Workplace Servic
     <li>Click Save & Close.</li>
     </ol>
 
+5.  If you find that you reservations made through the assistant do not appear in the Workplace Services home page (/p/web/workplaceServices), then check that the security groups assigned to that user have an Organization set.  The security groups mentioned in Step D don't have an Organization set by default.  There might also be issues with the Organization set on the assistant account as well as Organization set on the user and the buildings.
+
 End of instructions.
