@@ -10,8 +10,6 @@ An assistant for IBM TRIRIGA Workplace Services applications that enables users 
 
 TRIRIGA Assistant is an AI chatbot powered by the IBM Watson Assistant Service. It offers a brand new experience for employees to engage with their workplace services. It allows employees to make room reservations, report issues or lookup people using natural language.  
 
-This is the free basic version of the assistant that is only accessible within TRIRIGA Workplace Experience Apps. The premium version has not yet been released, but it will allow more customizations, additional capabilities and it will open up the platform for creating your own custom skills.
-
 These instructions will guide you through 1)  provisioning a TRIRIGA Assistant skill on the IBM Cloud, 2) installing and testing the OSLC APIs and 3) installing the chatbot interface into your workplace services apps. It is highly advisable that these steps are performed by a developer that is trained and experienced with IBM TRIRIGA.
 
 ## Prerequisites
