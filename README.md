@@ -95,7 +95,7 @@ To check that the information was sent correctly to the IBM TRIRIGA Assistant se
 
 Once the information has been successfully received by the IBM TRIRIGA Assistant services, you will be contacted through email at the email address provided on the form.  Once you receive the Integration ID, you may proceed with the rest of the steps.
 
-### Part 4 - Add Assistant UI to Workplace Services apps
+### Part 3 - Add Assistant UI to Workplace Services apps
 
 #### H) EDIT THE WORKPLACE SERVICES APP TO ADD CHAT UI ACCESS.
 
@@ -133,7 +133,7 @@ From the "Web View Designer", repeat the same steps directly above for the other
 
 If you feel that your workplace service apps are loading much slower after the edits, then you can "vulcanize" the apps [following these instructions](https://www.ibm.com/developerworks/community/wikis/home?lang=en#!/wiki/IBM TRIRIGA1/page/How to vulcanize your UX application).  If you do this, make sure you undo the change like F2 that sets the `Production Filename` to the `Development Filename`.
 
-### Part 5 - Configure permissions for users 
+### Part 4 - Configure permissions for users 
 
 #### K) ALLOW ASSISTANT USER TO CREATE RESERVATIONS ON BEHALF OF OTHER USERS.
 
