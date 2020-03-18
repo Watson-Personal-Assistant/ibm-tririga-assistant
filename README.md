@@ -61,7 +61,7 @@ The provisioning process requires a POST call to the IBM TRIRIGA Assistant servi
 1. Make a backup of the `cacerts` file located at `WEBSPHERE_ROOT/AppServer/java/8.0/jre/lib/security`.   
 2. Copy the CA certificates file `triassistant_cacerts` from the `cacerts` directory from this GitHub repository to that same directory.
 3. Execute the `keytool` command to add the CA certificates in `triassistant_cacerts` to the existing `cacerts` file:
-    `../../bin/keytool -import -trustcacerts -storepass changeit -alias root -file triassitant-certs -keystore ./cacerts -storepass changeit` 
+    `../../bin/keytool -import -trustcacerts -alias triassistant -file triassitant-certs -keystore ./cacerts -storepass changeit` 
 4. Restart TRIRIGA
 
 #### D) (OPTIONAL) TEST THE OSLC ENDPOINTS.
@@ -89,7 +89,7 @@ To check that the information was sent correctly to the IBM TRIRIGA Assistant se
 1. From the TRIRIGA Main Page, click on Tools > System Setup > Integration Object.
 2. Search for `ibmTriAssistant` in the Name column of the Integration Objects table.
 3. Click on the `ibmTriAssistant - POST - tririgaOrchestratorCF` integration object.
-4. Check the value for `Status`.  It should be `Ready`.  If `Failed`, then please us with the information found in the Integration Summary from the most recent execution in the Execute History table.
+4. Check the value for `Status`.  It should be `Ready`.  If `Failed`, then please send your IBM representative the information found in the `Integration Summary` field from the most recent execution in the `Execute History` table.
 
 #### G) WAIT FOR INTEGRATION ID FROM IBM
 
@@ -171,20 +171,8 @@ It's time to test with the Assistant Chat UI available from the Workplace Servic
 
 3.  If the chat icon doesn't appear in the bottom right corner of the Workplace Services app, then check for errors using the Console tab of the Inspector (right click in webpage and choose `Inspect`).
 
-4.  If you find that the URL provided when you ask to locate a room or person fails to load correctly (due to "undefined" being in the URL), then it is likely this is caused by the properties set on a couple OSLC resources.  Try the following to fix this problem:
+4.  If you find that you reservations made through the assistant do not appear in the Workplace Services home page (/p/web/workplaceServices), then check that the security groups assigned to that user have an Organization set.  The security groups mentioned in Step D don't have an Organization set by default.  There might also be issues with the Organization set on the assistant account as well as Organization set on the user and the buildings.
 
-    <ol type="a">
-    <li>Go to Tools > System Setup > OSLC Resource Manager.</li>
-    <li>Find and select `ibmWALocatePersonRS`.</li>
-    <li>In the OSLC Resource window that appears, click the link `Import All Fields` in the middle right of the screen above the Properties table.</li>
-    <li>Click Save & Close.</li>
-    <li>From the OSLC Resource Manager table, find and select `ibmWALocateSpaceRS`.</li>
-    <li>In the OSLC Resource window that appears, click the link `Import All Fields` in the middle right of the screen above the Properties table.</li>
-    <li>Click Save & Close.</li>
-    </ol>
-
-5.  If you find that you reservations made through the assistant do not appear in the Workplace Services home page (/p/web/workplaceServices), then check that the security groups assigned to that user have an Organization set.  The security groups mentioned in Step D don't have an Organization set by default.  There might also be issues with the Organization set on the assistant account as well as Organization set on the user and the buildings.
-
-6.  HOLD For troubleshooting provisioning
+5.  If you do not see the `Request IBM TRIRIGA Assistant` menu item in the `Requests` menu, then this is likely caused by changes to the menu that need to be merged.  Feel free to add the `ibmAssistantProvisionOrder-navigation` menu item to any Navigation Collection you wish.
 
 End of instructions.
