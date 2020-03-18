@@ -64,10 +64,18 @@ The provisioning process requires a POST call to the IBM TRIRIGA Assistant servi
     `../../bin/keytool -import -trustcacerts -alias triassistant -file triassitant-certs -keystore ./cacerts -storepass changeit` 
 4. Restart TRIRIGA
 
-#### D) (OPTIONAL) TEST THE OSLC ENDPOINTS.
+#### D) TEST THE OSLC ENDPOINTS.
 
-If you understand Postman, then you can test the OSLC calls using the Postman collection provided in the postman directory.  You will need to change the payload to have 'location/building/space' you have defined in your TRIRIGA instance. A successful test of the OSLC APIs when there are no OSLC errors.
-    
+Execute a quick `curl` command to validate OSLC endpoints used during provisioning.  Follow these steps to make sure you have the necessary info and objects in place.
+
+1.  You'll need the base64 encoded representation of the usernmame and password for the assistant account created earlier.  The `base64` unix command will generate this string for you given the username and password.
+   `echo "username:password" | base64`
+2.  Execute the following `curl` command and replace TRIRIGA_URL and ENCODED_USERNAME_AND_PASSWORD with your info.
+   `curl --location --request GET 'TRIRIGA_URL/oslc/spq/ibmWAProvisionQC?oslc.select=*' --header 'Authorization: Basic ENCODED_USERNAME_AND_PASSWORD' --insecure`
+
+The response should have some `triParentBuildingTX` values returned.  If an error occurs and you can't solve the problem on your own, contact your IBM representative.
+
+Also, optionally, if you understand Postman and would like to test all the OSLC calls, then you can test by using the Postman collection provided in the postman directory.  You will need to change the payload to have 'location/building/space' you have defined in your TRIRIGA instance. A successful test of the OSLC APIs when there are no OSLC errors.
 
 ### Part 2 - Submit the Provisioning Request and Check the results
 
@@ -80,7 +88,6 @@ The OM package imported contains a form that will execute a process of gathering
 3. Enter the user name and password for the assistant account you created earlier.
 4. Enter your name and email address so we can contact you when the assistant services have been provisioned for your instance.
 5. Click Submit.
-Note: You won't get any direct feedback on the form if everything went well or if there were failures.
 
 #### F) CHECK IF INFORMATION WAS RECEIVED CORRECTLY
 
@@ -93,7 +100,7 @@ To check that the information was sent correctly to the IBM TRIRIGA Assistant se
 
 #### G) WAIT FOR INTEGRATION ID FROM IBM
 
-Once the information has been successfully received by the IBM TRIRIGA Assistant services, you will be contacted through email at the email address provided on the form.  Once you receive the Integration ID, you may proceed with the rest of the steps.
+Once the information has been successfully received by the IBM TRIRIGA Assistant services, you will be contacted through email at the email address provided on the form.  Once you receive the Integration ID, you may proceed with the rest of the steps.  If you do not receive a response from IBM in a week, please contact your IBM representative.
 
 ### Part 3 - Add Assistant UI to Workplace Services apps
 
@@ -161,7 +168,7 @@ The OM package imported contains a new model for the UX apps. Non-admin users ne
 
 #### M) TEST THE WORKPLACE SERVICES APPS.
 
-It's time to test with the Assistant Chat UI available from the Workplace Services app.  Make sure the user you are using has a primary location set, isn't the system or assistant user, and has the security group modified or created in step K.  If all edits were done correctly, you should see a chat icon appear at the bottom right of the Workplace Services apps.  If you know a room name, then try out the service request functionality by typing "the ________ room has a broken chair" and if you have reserve functionality, try "book a room".
+It's time to test with the Assistant Chat UI available from the Workplace Services app.  Make sure the user you are using has a primary location set, isn't the system or assistant user, and has the security group modified or created in step L.  If all edits were done correctly, you should see a chat icon appear at the bottom right of the Workplace Services apps.  If you know a room name, then try out the service request functionality by typing "the ________ room has a broken chair" and if you have reserve functionality, try "book a room".
 
 ### TROUBLESHOOTING
 
