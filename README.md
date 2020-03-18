@@ -170,6 +170,8 @@ The OM package imported contains a new model for the UX apps. Non-admin users ne
 
 It's time to test with the Assistant Chat UI available from the Workplace Services app.  Make sure the user you are using has a primary location set, isn't the system or assistant user, and has the security group modified or created in step L.  If all edits were done correctly, you should see a chat icon appear at the bottom right of the Workplace Services apps.  If you know a room name, then try out the service request functionality by typing "the ________ room has a broken chair" and if you have reserve functionality, try "book a room".
 
+![image](images/screenshot.png)
+
 ### TROUBLESHOOTING
 
 1.  If a popup appears saying "You do not have permission to access this page", then the user doesn't have a security group that has the permissions documented in step L.
