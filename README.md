@@ -72,7 +72,9 @@ Also, optionally, if you understand Postman and would like to test all the OSLC 
 
 The OM package imported contains a form that will execute a process of gathering data for the Assistant and providing that data to IBM.  The form asks for the user name and password for the account created in an earlier step.  This is needed so the IBM's TRIRIGA Assistant services can make an OSLC call back into your TRIRIGA instance and gather building and room names.
 
-1. From the TRIRIGA Main Page, click on Requests > Request IBM TRIRIGA Assistant  (if you do not see this menu item, check the trouble shooting section below.)
+1. From the TRIRIGA Main Page, click on My Reports > System Reports, and filter on the Business Object column for `ibmAssistantProvisionOrder`.
+2. Execute the `TRIRIGA Assistant Provision Record Query`.
+3. Click on the only record found.  Don't add a record, just modify the existing record that was provided in the OM package.
 2. Enter the URL for your TRIRIGA instance. Note: The instance must be accessible without a VPN and through HTTPS. Include the complete path, starting with `https://`.
 3. Enter the user name and password for the assistant account you created earlier.
 4. Enter your name and email address so we can contact you when the assistant services have been provisioned for your instance.
