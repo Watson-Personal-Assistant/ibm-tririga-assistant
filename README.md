@@ -1,4 +1,4 @@
-# IBM Tririga Assistant
+# IBM TRIRIGA Assistant
 
 An assistant for IBM TRIRIGA Workplace Services applications that enables users to book rooms, make service requests, locate people/places and ask questions with an AI assistant. 
 
@@ -14,7 +14,7 @@ These instructions will guide you through 1)  provisioning a TRIRIGA Assistant s
 
 ## Prerequisites
 
-- TRIRIGA 10.6.1/3.6.1 
+- TRIRIGA 10.6.1/3.6.0 
 - TRIRIGA Workplace Services apps deployed
 - TRIRIGA Request Central and (optionally) TRIRIGA Reserve 
 - TRIRIGA instance that is accessible securely from the internet. TRIRIGA Assistant is a SaaS service hosted securely on IBM cloud. The service will need to communicate via secured OSLC APIs to your TRIRIGA instance. This is usually not an issue for TRIRIGA SaaS customers.
@@ -25,57 +25,14 @@ This installation should take 5-8 hours to complete, not including the time for 
 
 ## Steps
 
-### Part 1 - Gather data
+### Part 1 - Import OSLC resources, create assistant user and test
 
-#### A) GATHER YOUR BUILDING AND ROOM NAMES.
+#### A) IMPORT THE OM PACKAGE
 
-You will need to run a few TRIRIGA Reports to gather a list of buildings, floors, and reservable spaces. These are the reports to run:
-
-- All Buildings with Reservable Spaces: `triBuilding -  Find - All Buildings with Reservable Spaces` 
-- Reservable Spaces: `triSpace - Reservable Space`
-
-
-1. Log in to TRIRIGA account (your account should have access to run all of these - if not, you may need to ask the sys-admin for access)
-
-2. In the top left of the menu click 'My Reports' (directly on 'My Reports', don't select the 'Report Scheduler' sub-menu)
-
-3. Select 'System Reports' from the row of tab headers
-
-4. In the Name filter enter `triSpace - Reservable Space` and press Enter (or click the 'apply filters')
-
-5. This should list the 'triSpace - Reservable Space' report
-
-6. In the 2nd column click the Paper+Run icon
-
-7. The report will open in a separate window
-
-8. You can use the 'Export' action at the top/bottom to export the results to a `.xlsx` file.
-
-9. Repeat steps 4 through 8, but for the `triBuilding -  Find - All Buildings with Reservable Spaces` report by searching for `All Buildings with Reservable Spaces` in the Name column`.  
-**Note**, if you don't find the query, there are two spaces after the first hyphen. Markdown removes the space when rendering this document. Searching for the latter part of the name should find just one query.
-
-#### B) GATHER THE TIMEZONES FOR EACH BUILDING.
-
-You will need to also run a TRIRIGA Report to gather the time zones for each building.
-
-1.	Find the query named `Location - Find - Find All Property And Buildings` 
-2.	Edit the query and add the `TimeZones` business object from the `Classification Module`. 
-3.	In the Columns tab for that same query, click the Classification Module and select `Timezone` (triTimeZoneTX). 
-4.	Click Save 
-5.	Click Run Report 
-6.	Click Export from the report window that appears 
-
-
-### Part 2 - Import OSLC resources, create assistant user and test
-
-#### C) LOAD THE OSLC RESOURCES.
-
-1.	Create new Object Migration import package selecting the wa-tri-assistant-*.zip file provided in this folder.
+1.	Create new Object Migration import package selecting the tri-assistant-*.zip file provided in the om-package folder.
 2.	Validate and Import the OM package.
-3.	If you can reserve rooms using the Workplace Services apps, then go to next step, otherwise you will need to define buildings, spaces, reservation space groups, reservation coordinators and other things following [this documentation](https://www.ibm.com/support/knowledgecenter/en/SSFCZ3_10.5.2/com.ibm.tri.doc/res_overview/t_ctr_manage_reservations.html) ([https://www.ibm.com/support/knowledgecenter/en/SSFCZ3_10.5.2/com.ibm.tri.doc/res_overview/t_ctr_manage_reservations.html](https://www.ibm.com/support/knowledgecenter/en/SSFCZ3_10.5.2/com.ibm.tri.doc/res_overview/t_ctr_manage_reservations.html))
 
-
-#### D) SET UP THE ASSISTANT USER.
+#### B) SET UP THE ASSISTANT USER.
 
 In order to allow the assistant user to create location reservations and service requests on behalf of other users, we have to create the user with the proper groups and licenses. 
 
@@ -93,32 +50,45 @@ In order to allow the assistant user to create location reservations and service
     - IBM TRIRIGA Request Central, or
     - IBM TRIRIGA Workplace Reservation Manager
 
-2.	Make note of the user name and password because it will need to be provided to IBM.
+2.	Make note of the user name and password because it will needed in the provisioning step below.
 3.	Important: Do NOT give the assistant user a primary location.  This user will be used to book rooms and submit service requests on behalf of all users in the TRIRIGA instance.
 
-#### E) (OPTIONAL) TEST THE OSLC ENDPOINTS.
+#### C) TEST THE OSLC ENDPOINTS.
 
-If you understand Postman, then you can test the OSLC calls using the Postman collection provided in the postman directory.  You will need to change the payload to have 'location/building/space' you have defined in your TRIRIGA instance. A successful test of the OSLC APIs when there are no OSLC errors.
-    
+Execute a quick `curl` command to validate OSLC endpoints used during provisioning.  Follow these steps to make sure you have the necessary info and objects in place.
 
-### Part 3 - Request the Assistant Integration ID
+1.  You'll need the base64 encoded representation of the usernmame and password for the assistant account created earlier.  The `base64` unix command will generate this string for you given the username and password.
+   `echo "username:password" | base64`
+2.  Execute the following `curl` command and replace TRIRIGA_URL and ENCODED_USERNAME_AND_PASSWORD with your info.
+   `curl --location --request GET 'TRIRIGA_URL/oslc/spq/ibmWAProvisionQC?oslc.select=*' --header 'Authorization: Basic ENCODED_USERNAME_AND_PASSWORD' --insecure`
 
-#### F) REQUEST YOUR ASSISTANT INTEGRATION ID.
+The response should have some `triParentBuildingTX` values returned.  If an error occurs and you can't solve the problem on your own, contact your IBM representative.
 
-Your integration ID will be used to connect your TRIRIGA with the Assistant Skill on the cloud. You will use this Integration ID in the next step.
+Also, optionally, if you understand Postman and would like to test all the OSLC calls, then you can test by using the Postman collection provided in the postman directory.  You will need to change the payload to have 'location/building/space' you have defined in your TRIRIGA instance. A successful test of the OSLC APIs when there are no OSLC errors.
 
-To request your Integration ID, send the following to **[jtmoore@us.ibm.com](jtmoore@us.ibm.com)**:
-1. The Excel files generated from the three reports:
-- Reservable Spaces (Step A).
-- All Active Locations (Step A).
-- Location Timezones (Step B).
-2. The URL for your TRIRIGA instance. Note: The instance must be accessible without a VPN and through HTTPS. 
-3. The username and password for the assistant account (Step D).
+### Part 2 - Submit the Provisioning Request
+
+#### D) COMPLETE THE PROVISIONING FORM
+
+The OM package imported contains a form that will execute a process of gathering data for the Assistant and providing that data to IBM.  The form asks for the user name and password for the account created in an earlier step.  This is needed so the IBM's TRIRIGA Assistant services can make an OSLC call back into your TRIRIGA instance and gather building and room names.
+
+1. From the TRIRIGA Main Page, click on My Reports > System Reports, and filter on the Business Object column for `ibmAssistantProvisionOrder`.
+2. Execute the `TRIRIGA Assistant Provision Record Query`.
+3. Click on the only record found.  Don't add a record, just modify the existing record that was provided in the OM package.
+2. Enter the URL for your TRIRIGA instance. Note: The instance must be accessible without a VPN and through HTTPS. Include the complete path, starting with `https://`.
+3. Enter the user name and password for the assistant account you created earlier.
+4. Enter your name and email address so we can contact you when the assistant services have been provisioned for your instance.
+5. Click Submit.
 
 
-### Part 4 - Add Assistant UI to Workplace Services apps
+#### E) WAIT FOR INTEGRATION ID FROM IBM
 
-#### G) EDIT THE WORKPLACE SERVICES APP TO ADD CHAT UI ACCESS.
+Once the information has been successfully received by the IBM TRIRIGA Assistant services, you will be contacted through email at the email address provided on the form.  Once you receive the Integration ID, you may proceed with the rest of the steps.  If you do not receive a response from IBM in a week, please contact your IBM representative.
+
+
+### Part 3 - Add Assistant UI to Workplace Services apps
+
+#### F) EDIT THE WORKPLACE SERVICES APP TO ADD CHAT UI ACCESS.
 
 1.	Once you have received your Integration ID, open the Workplace Service view by going to Tools > Web View Designer > triWorkplaceServices.
 2.	Copy the value in `Development Filename` and paste it as the value in the `Production Filename`. (Note: This is done for testing purposes and can be reversed after testing passes. A link to instructions on how to do "vulcanization" is below.)
@@ -144,19 +114,20 @@ To request your Integration ID, send the following to **[jtmoore@us.ibm.com](jtm
 11. Upload the changes by clicking on the Upload view file icon.
 12. Click `Save & Close` button in upper right corner.
 
-#### H) EDIT THE ROOM RESERVATION AND SERVICE REQUEST VIEWS.
+#### G) EDIT THE ROOM RESERVATION AND SERVICE REQUEST VIEWS.
 
 From the "Web View Designer", repeat the same steps directly above for the other views: 
     - triRoomReservation View (set the `Production Filename`, edit files `trilazy-imports.html` and `triview-room-reservation-dev.html`).
     - triServiceRequest View (set the `Production Filename`, edit files `trilazy-imports.html` and `triview-service-request-dev.html`).
 
-#### I) (OPTIONAL) VULCANIZE THE VIEWS.
+#### H) (OPTIONAL) VULCANIZE THE VIEWS.
 
 If you feel that your workplace service apps are loading much slower after the edits, then you can "vulcanize" the apps [following these instructions](https://www.ibm.com/developerworks/community/wikis/home?lang=en#!/wiki/IBM TRIRIGA1/page/How to vulcanize your UX application).  If you do this, make sure you undo the change like F2 that sets the `Production Filename` to the `Development Filename`.
 
-### Part 5 - Configure permissions for users 
 
-#### J) ALLOW ASSISTANT USER TO CREATE RESERVATIONS ON BEHALF OF OTHER USERS.
+### Part 4 - Configure permissions for users 
+
+#### I) ALLOW ASSISTANT USER TO CREATE RESERVATIONS ON BEHALF OF OTHER USERS.
 
 1.	If assistant will be used to make room reservations, the `TRIRIGAWEB.properties` should have the `SHOW_PREFERENCES_LINK` env var set to `Y` 
     
@@ -169,7 +140,7 @@ If you feel that your workplace service apps are loading much slower after the e
     - In the Reservation Delegates section, click the Find button
     - Click the checkbox for the `triassistant` user and click OK
 
-#### K) MODIFY OR CREATE NEW SECURITY GROUP
+#### J) MODIFY OR CREATE NEW SECURITY GROUP
 
 The OM package imported contains a new model for the UX apps. Non-admin users need to be given proper access to this model.  To accomplish this, you can either create a new security group or modify an existing.  The steps below modify the `TRIRIGA Request Central - Fundamentals` security group to allow users, that have this group, to read, update, create and delete the `ibmTriAssistant` model.
 
@@ -180,30 +151,22 @@ The OM package imported contains a new model for the UX apps. Non-admin users ne
 5.  In the "Model Access" panel on the right, select `Read,Update,Create and Delete`.
 6.  Click Save & Close.
 
-#### L) TEST THE WORKPLACE SERVICES APPS.
+#### K) TEST THE WORKPLACE SERVICES APPS.
 
-It's time to test with the Assistant Chat UI available from the Workplace Services app.  Make sure the user you are using has a primary location set, isn't the system or assistant user, and has the security group modified or created in step K.  If all edits were done correctly, you should see a chat icon appear at the bottom right of the Workplace Services apps.  If you know a room name, then try out the service request functionality by typing "the ________ room has a broken chair" and if you have reserve functionality, try "book a room".
+It's time to test with the Assistant Chat UI available from the Workplace Services app.  Make sure the user you are using has a primary location set, isn't the system or assistant user, and has the security group modified or created in step L.  If all edits were done correctly, you should see a chat icon appear at the bottom right of the Workplace Services apps.  If you know a room name, then try out the service request functionality by typing "the ________ room has a broken chair" and if you have reserve functionality, try "book a room".
+
+![image](images/screenshot.png)
 
 ### TROUBLESHOOTING
 
-1.  If a popup appears saying "You do not have permission to access this page", then the user doesn't have a security group that has the permissions documented in step K.
+1.  If a popup appears saying "You do not have permission to access this page" when you access the Workplace Services apps, then the user doesn't have a security group that has the permissions documented in step J.
 
 2.  If the chat icon appears but you don't see the introduction similar to what is shown in the image at the very top of this doc, then check that the user you are using has a primary location set in the user's profile.
 
 3.  If the chat icon doesn't appear in the bottom right corner of the Workplace Services app, then check for errors using the Console tab of the Inspector (right click in webpage and choose `Inspect`).
 
-4.  If you find that the URL provided when you ask to locate a room or person fails to load correctly (due to "undefined" being in the URL), then it is likely this is caused by the properties set on a couple OSLC resources.  Try the following to fix this problem:
+4.  If you find that you reservations made through the assistant do not appear in the Workplace Services home page (/p/web/workplaceServices), then check that the security groups assigned to that user have an Organization set.  The security groups mentioned in Step D don't have an Organization set by default.  There might also be issues with the Organization set on the assistant account as well as Organization set on the user and the buildings.
 
-    <ol type="a">
-    <li>Go to Tools > System Setup > OSLC Resource Manager.</li>
-    <li>Find and select `ibmWALocatePersonRS`.</li>
-    <li>In the OSLC Resource window that appears, click the link `Import All Fields` in the middle right of the screen above the Properties table.</li>
-    <li>Click Save & Close.</li>
-    <li>From the OSLC Resource Manager table, find and select `ibmWALocateSpaceRS`.</li>
-    <li>In the OSLC Resource window that appears, click the link `Import All Fields` in the middle right of the screen above the Properties table.</li>
-    <li>Click Save & Close.</li>
-    </ol>
-
-5.  If you find that you reservations made through the assistant do not appear in the Workplace Services home page (/p/web/workplaceServices), then check that the security groups assigned to that user have an Organization set.  The security groups mentioned in Step D don't have an Organization set by default.  There might also be issues with the Organization set on the assistant account as well as Organization set on the user and the buildings.
+5.  If you do not see the `Request IBM TRIRIGA Assistant` menu item in the `Requests` menu, then this is likely caused by changes to the menu that need to be merged.  Feel free to add the `ibmAssistantProvisionOrder-navigation` menu item to any Navigation Collection you wish.
 
 End of instructions.
