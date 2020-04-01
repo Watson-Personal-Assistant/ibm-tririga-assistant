@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "9da8adca-2205-4304-8256-e075286f47ea",
-		"name": "tririga-assistant",
+		"_postman_id": "c4d7d1a1-2882-48ca-b7b2-07302a746120",
+		"name": "tririga-assistant copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -98,61 +98,6 @@
 					"path": [
 						"oslc",
 						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "tririga - create work task",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "smarter",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "jsmart",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Properties",
-						"value": "*",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{ \"dcterms:title\": \"Worktask - Corrective Maintenance\",\n\"spi:triTaskTypeCL\": \"Corrective\",\n\"dcterms:description\": \"Automated Creation\",\n\"spi:triWorkingLocationTX\": \"\\\\Locations\\\\Offices\\\\Europe\\\\Frankfurt Watson Centre\\\\00 - Ground Floor\\\\00-AO02\",\n\"spi_wm:wopriority\": \"High\",\n\"spi:triCurrencyUO\": \"Euro\",\n\"spi:action\": \"Activate\"\n}"
-				},
-				"url": {
-					"raw": "{{URL}}/oslc/so/ibmWorkTaskCF",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"oslc",
-						"so",
-						"ibmWorkTaskCF"
 					]
 				}
 			},
@@ -488,6 +433,18 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "tririga - provisioning query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
