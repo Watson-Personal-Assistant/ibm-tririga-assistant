@@ -60,7 +60,7 @@ Execute a quick `curl` command to validate OSLC endpoints used during provisioni
 1.  You'll need the base64 encoded representation of the usernmame and password for the assistant account created earlier.  The `base64` unix command will generate this string for you given the username and password.
    `echo "username:password" | base64`
 2.  Execute the following `curl` command and replace TRIRIGA_URL and ENCODED_USERNAME_AND_PASSWORD with your info.
-   `curl --location --request GET 'TRIRIGA_URL/oslc/spq/ibmWAProvisionQC?oslc.select=*' --header 'Authorization: Basic ENCODED_USERNAME_AND_PASSWORD' --insecure`
+    `curl --location --request GET 'TRIRIGA_URL/oslc/spq/ibmWAProvisionQC?oslc.select=*' --header 'Authorization: Basic ENCODED_USERNAME_AND_PASSWORD' --header 'User-Agent: PostmanRuntime/7.23.0' --insecure`
 
 The response should have some `triParentBuildingTX` values returned.  If an error occurs and you can't solve the problem on your own, contact your IBM representative.
 
